@@ -1,0 +1,8 @@
+asgiref==3.12.1
+Django==6.1
+django-editorjs-fields==0.3.0
+pillow==12.3.0
+six==1.17.0
+sqlparse==0.6.0
+transliterate==1.10.2
+tzdata==2026.3
