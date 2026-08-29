@@ -13,8 +13,8 @@ In `account/decorators.py` there are decorators `@administrator_required`, `@tea
 **Supposed access:**
 - `Administrator` supposed to have full access to pages in Django app `school`. Administrator would create new accounts for curators,teachers and also would create new groups to which the curators can be assigned. More information about groups can be found in group-structure.md
 - `Teacher` account has access to view, create and edit lessons. Teacher also has access to the page in which the new uploaded by Student(s) assignments can be reviewed and graded. (At the present moment this page does not exist yet)
-- `Curator` account has access to view and edit only the group the Curator is assigned to. Curator also can create new student accounts, edit and delete student accounts. More information about `Group`(s) can be found in [group-structure.md](github.com/EliasLucky/Edu-Web-Platform/main/docs/group-structure.md)
-- `Student` account has access to view his marks (for each period, grade, quarter, subject) and to upload completed assignments More information about marks and lesson structure can be found in [lesson-structure.md](github.com/EliasLucky/Edu-Web-Platform/main/docs/lesson-structure.md)
+- `Curator` account has access to view and edit only the group the Curator is assigned to. Curator also can create new student accounts, edit and delete student accounts. More information about `Group`(s) can be found in [group-structure.md](group-structure.md)
+- `Student` account has access to view his marks (for each period, grade, quarter, subject) and to upload completed assignments More information about marks and lesson structure can be found in [lesson-structure.md](lesson-structure.md)
 
 ## User System
 Web application uses custom account system different from the default one from Django. Each account type have its own sign up `ModelForm`. As an example, for Student account it would be `StudentSignupForm`.
@@ -47,7 +47,7 @@ Note: The fields `first_name` and `last_name` even though are excepted to be in 
 **Fields for Student are:**
 - `user` (OneToOneField User) Student is connected to created User.
 - `grade` (ForeignKey Grade) Grade of the student.
-- `progress` (ForeignKey ProgressStudent) Progress of the student. Information about `ProgressStudent` can be found in [lesson-structure.md](github.com/EliasLucky/Edu-Web-Platform/main/docs/lesson-structure.md)
+- `progress` (ForeignKey ProgressStudent) Progress of the student. Information about `ProgressStudent` can be found in [lesson-structure.md](lesson-structure.md)
 
 
 **Fields for Curator are:**
