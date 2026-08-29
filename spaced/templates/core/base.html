@@ -1,0 +1,177 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel='stylesheet' type='text/css' href="{% static 'core/css/dark-theme.css' %}">
+	<link rel='stylesheet' type='text/css' href="{% static 'core/css/base.css' %}">
+	<script type="text/javascript" src="{% static 'core/js/base.js' %}"></script>
+	{% block head_imports %}
+	{% endblock %}
+	<title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+	<div class="container">
+		<header class="header">
+			<button class="menu" onclick="showSidebar()"><img src="{% static 'core/icons/menu.png' %}"></button>
+			<div class="account-profile-picture-mini">
+				<a href="{% url 'profile:view_profile' uuid=user.id %}">
+					<div class="account-profile-picture-mini-container">
+						<img src="{{ user.profile_picture.url }}">
+					</div>
+				</a>
+			</div>
+		</header>
+		<aside class="sidebar" id="sidebar">
+			<div class="top">
+				<a href="{% url 'profile:view_profile' uuid=user.id %}">
+					<div class="account">
+						<div class="account-profile-picture">
+							<img src="{{ user.profile_picture.url }}">
+						</div>
+						<div class="information">
+							<p class="account-first-name">{{ user.first_name }} {{ user.last_name }}</p>
+							<p class="account-type">{{ user_types|get_item:user.role }}</p>
+						</div>
+						<div class="logout">
+							<a class="account-logout" href="{% url 'profile:logout' %}"><img src="{% static 'core/icons/logout.png' %}"></a>
+							<!--<button class="account-logout" type="button"><img src="#"></button>-->
+						</div>
+					</div>
+				</a>
+			</div>
+			<div class="middle">
+				{% if user.role == "A" %}
+				<ul class="sections">
+					{% if "school" in request.path %}
+					<li class="active">
+					{% else %}
+					<li>
+					{% endif %}
+						<a href="#">
+							<span>Школа</span>
+						</a>
+					</li>
+					{% if "group" in request.path %}
+					<li class="active">
+					{% else %}
+					<li>
+					{% endif %}
+						<a href="{% url 'group:list' %}">
+							<span>Группа</span>
+						</a>
+					</li>
+					{% if "cours" in request.path or "lesson" in request.path %}
+					<li class="active">
+					{% else %}
+					<li>
+					{% endif %}
+						<a href="#">
+							<span>Конструктор уроков</span>
+						</a>
+					</li>
+				</ul>
+				{% elif user.role == "T" %}
+				<ul class="sections">
+					<li class="active">
+						<a href="#">
+							<span>Последнее</span>
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<span>Ученики</span>
+						</a>
+					</li>
+					{% if "cours" in request.path or "lesson" in request.path %}
+					<li class="active">
+					{% else %}
+					<li>
+					{% endif %}
+						<a href="#">
+							<span>Конструктор уроков</span>
+						</a>
+					</li>
+				</ul>
+				{% elif user.role == "C" %}
+				<ul class="sections">
+					{% if "group" in request.path %}
+					<li class="active">
+					{% else %}
+					<li>
+					{% endif %}
+						{% if nogroup %}
+						<a href="#">
+						{% else %}
+						<a href="{% url 'group:edit' uuid=group_uuid %}">
+						{% endif %}
+							<span>Группа</span>
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<span>Консультации</span>
+						</a>
+					</li>
+				</ul>
+				{% elif user.role == "S" %}
+				<ul class="sections">
+					{% if "welcome" in request.path %}
+					<li class="active">
+					{% else %}
+					<li>
+					{% endif %}
+						<a href="{% url 'welcome' %}">
+							<span>Главная</span>
+						</a>
+					</li>
+					{% if "marks" in request.path %}
+					<li class="active">
+					{% else %}
+					<li>
+					{% endif %}
+						<a href="{% url 'marks' %}">
+							<span>Все предметы</span>
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<span>Консультации</span>
+						</a>
+					</li>
+					{% if "group" in request.path %}
+					<li class="active">
+					{% else %}
+					<li>
+					{% endif %}
+						<a href="#">
+							<span>Группа</span>
+						</a>
+					</li>
+				</ul>
+				{% endif %}
+			</div>
+			<!--<div class="bottom">
+				<div class="logo">
+					<img src="#">
+				</div>
+				<div class="name">
+					<p>SCHOOL</p>
+				</div>
+			</div>-->
+		</aside>
+		<!--<div class="sidebar">
+			
+		</div>-->
+		
+		{% block content %}
+		{% endblock content %}
+	</div>
+
+	<div class="darken hide" id="darken"></div>
+
+	{% block scripts %}
+	{% endblock %}
+</body>
+</html>

@@ -1,0 +1,117 @@
+.main-header {
+	display: flex;
+	flex-wrap: nowrap;
+	align-items: center;
+	background-color: red;
+	padding: 10px;
+}
+
+.section-label {
+
+}
+
+.grade-label {
+	flex-grow: 1;
+	text-align: center;
+}
+
+.choose-period {
+	display: flex;
+	flex-wrap: nowrap;
+	align-items: center;
+	border: 1px solid black;
+	border-radius: 5px;
+}
+
+.content {
+	display: flex;
+	flex-wrap: nowrap;
+	flex-direction: column;
+	box-sizing: border-box;
+	padding: 10px;
+}
+
+.quarter {
+	display: flex;
+	flex-wrap: nowrap;
+	flex-direction: row;
+	background-color: purple;
+	border: 1px solid red;
+	border-radius: 5px;
+	width: 100%;
+	margin-bottom: 10px;
+}
+
+.base {
+	width: 18%;
+	background-color: lime;
+	padding: 5px;
+}
+
+.base-container {
+	display: flex;
+	flex-wrap: nowrap;
+	flex-direction: column;
+	justify-content: space-between;
+	height: 100%;
+}
+
+.progess {
+	background-color: black;
+
+}
+
+.bar {
+	background-color: gray;
+}
+
+.subjects {
+	display: flex;
+	flex-wrap: nowrap;
+	flex-direction: row;
+	box-sizing: border-box;
+	padding: 5px;
+	width: 82%;
+	overflow-x: scroll;
+}
+
+.subject {
+	display: flex;
+	flex-wrap: nowrap;
+	flex-direction: column;
+	justify-content: space-between;
+	width: 120px;
+	height: 90px;
+	background-color: aqua;
+	padding: 5px;
+}
+
+.number-5 {
+	color: lime;
+}
+
+.number-4 {
+	color: green;
+}
+
+.number-3 {
+	color: orange;
+}
+
+.number-2 {
+	color: red
+}
+
+.number-1 {
+	color: crimson;
+}
+
+@media screen and (max-width: 640px) {
+	.base {
+		width: 24%;
+	}
+
+	.subjects {
+		width: 76%;
+	}
+}

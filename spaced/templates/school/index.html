@@ -1,0 +1,64 @@
+{% extends "../core/base.html" %}
+{% load static %}
+
+{% block head_imports %}
+<link rel='stylesheet' type='text/css' href="{% static 'school/css/index.css' %}">
+{% endblock %}
+
+{% block title %}Школа{% endblock %}
+
+{% block account_first_name %}
+Фамилия Имя
+{% endblock %}
+
+{% block account_type %}
+Школа
+{% endblock %}
+
+{% block content %}
+<main>
+	<div class="main-header">
+		<div class="section-label">
+			<p>Школа</p>
+		</div>
+		<!--<div class="grade-label">
+			<p>{Алгебра}</p>
+		</div>
+		<div class="choose-period">
+			<button></button>
+			<p>{2024-2025}</p>
+			<button></button>
+		</div>-->
+	</div>
+	<div class="content">
+		<div class="users-type">
+			<a href="{{request.path}}?tab=administrator">
+				<div class="users-type-container">
+					<p>Администраторы</p>
+				</div>
+			</a>
+		</div>
+		<div class="users-type">
+			<a href="{{request.path}}?tab=curator">
+				<div class="users-type-container">
+					<p>Кураторы</p>
+				</div>
+			</a>
+		</div>
+		<div class="users-type">
+			<a href="{{request.path}}?tab=teacher">
+				<div class="users-type-container">
+					<p>Учителя</p>
+				</div>
+			</a>
+		</div>
+		<div class="users-type">
+			<a href="{% url 'group:list' %}">
+				<div class="users-type-container">
+					<p>Ученики</p>
+				</div>
+			</a>
+		</div>
+	</div>
+</main>
+{% endblock %}

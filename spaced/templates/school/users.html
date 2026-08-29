@@ -1,0 +1,187 @@
+{% extends "../core/base.html" %}
+{% load static %}
+
+{% block head_imports %}
+<link rel='stylesheet' type='text/css' href="{% static 'school/css/users.css' %}">
+<script type="text/javascript" src="{% static 'school/js/school.js' %}"></script>
+{% endblock %}
+
+{% block title %}Школа{% endblock %}
+
+{% block account_first_name %}
+Фамилия Имя
+{% endblock %}
+
+{% block account_type %}
+Школа
+{% endblock %}
+
+{% block content %}
+<main>
+	<div class="main-header">
+		<div class="section-label">
+			<p>Школа</p>
+		</div>
+		<div class="grade-label">
+			<p>{{ user_type }}</p>
+		</div>
+		<!--<div class="choose-period">
+			<button></button>
+			<p>{2024-2025}</p>
+			<button></button>
+		</div>-->
+	</div>
+	<div class="content">
+		<div class="content-header">
+			<div class="content-header-left">
+				<a href="{{request.path}}">
+					<button class="back">Назад</button>
+				</a>
+			</div>
+			<div class="content-header-right">
+				<button class="create-user" onclick="addUser('{}')">Добавить аккаунт</button>
+			</div>
+		</div>
+		<div class="users">
+			<table class="table">
+				<thead>
+					<tr>
+						<th class="table-head-center">№</th>
+						<th class="table-head-left">Профиль</th>
+						<th class="table-head-left">Логин</th>
+						<th class="table-head-center">Пароль</th>
+						<th class="table-head-center">Действия</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for user in users %}
+						<tr>
+							<td data-label="№" class="table-number"></td>
+							<td data-label="Профиль" class="table-user">
+								<div class="user-container">
+									<a href="{% url 'profile:view_profile' uuid=user.user.id %}">
+										<div class="user">
+											<div class="user-account-profile-picture">
+												<img src="{{ user.user.profile_picture.url }}">
+											</div>
+											<div class="user-account-first-name">
+												<p>{{ user.user.first_name }} {{ user.user.last_name }}</p>
+											</div>
+										</div>
+									</a>
+								</div>
+							</td>
+							<td data-label="Логин" class="table-gmail">
+								{{ user.user.login }}
+							</td>
+							<td data-label="Пароль" class="table-password">
+								<div class="password">
+									<p class="user-password" data-content="{{ user.user.password }}">****</p>
+									<button onclick="showPassword(this)"></button>
+								</div>
+							</td>
+							<td data-label="Действия" class="table-actions">
+								<div class="actions">
+									<div class="view">
+										<button class="view-container" data-userid="{{ user.user.id }}" onclick="viewUser(this)">
+											<img src="{% static 'core/icons/view.png' %}">
+										</button>
+									</div>
+									<!--<div class="edit">
+										<img src="#">
+									</div>
+									<div class="delete">
+										<img src="#">
+									</div>-->
+								</div>
+							</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+		<div class="widget-add-user hide" id="widget-add-user">
+			<div class="widget-header">
+				<p>Создание аккаунта</p>
+				<button type="button" onclick="addUser('{}')"><img src="#"></button>
+			</div>
+			<div class="widget-content">
+				<div class="note">
+					<p>Пункты помеченные символом *, обязательны для заполнения.</p>
+				</div>
+				<form method="POST" action="" autocomplete="off">
+					{% csrf_token %}
+					
+					<div class="form-content">
+						{{ form.add_user }}
+					</div>
+					<div class="buttons">
+						<button type="reset" class="cancel" onclick="addUser('{}')">Отмена</button>
+						<button type="submit" class="submit">Сохранить</button>
+					</div>
+				</form>
+			</div>
+		</div>
+		{% for user in users %}
+		<div class="widget-view-student hide" id="{{ user.user.id }}">
+			<div class="widget-header">
+				<p>Анкета пользователя</p>
+				<button type="button" data-userid="{{ user.user.id }}" onclick="viewUser(this)"><img src="#"></button>
+			</div>
+			<div class="widget-content2">
+				<div class="widget-left">
+					<div class="widget-user">
+						<div class="widget-user-account-profile-picture">
+							<img src="{{ user.user.profile_picture.url }}">
+						</div>
+						<div class="widget-user-account-first-name">
+							<p>{{ user.user.first_name }} {{ user.user.last_name }}</p>
+						</div>
+						<div class="widget-user-account-type">
+							<p>{{ user_types|get_item:user.user.role }}</p>
+						</div>
+					</div>
+					<div class="widget-buttons">
+						<button type="button" class="edit_data" data-userid="{{ user.user.id }}" onclick="editUser(this)">Редактировать данные</button>
+						<button type="button" class="reset_password_data" onclick="addUser('{}')">Сбросить пароль</button>
+						<button type="button" class="delete_user_data" onclick="addUser('{}')">Удалить аккаунт</button>
+					</div>
+				</div>
+				<div class="widget-right">
+					<div class="form-content">
+						<div class="form-content-container">
+							<p class="form-content-label">Логин</p>
+							<p class="form-content-data">{{ user.user.login }}</p>
+						</div>
+						<div class="form-content-container">
+							<p class="form-content-label">Пароль</p>
+							<div class="form-content-data">
+								<div class="password" style="display: flex; flex-wrap: nowrap; flex-direction: row;">
+									<p class="user-password" data-content="{{ user.user.password }}">****</p>
+									<button onclick="showPassword(this)"></button>
+								</div>
+							</div>
+						</div>
+						<div class="form-content-container">
+							<p class="form-content-label">Пол</p>
+							<p class="form-content-data">{{ genders|get_item:user.user.gender }}</p>
+						</div>
+						{% if user.user.role == "S" %}
+						<div class="form-content-container">
+							<p class="form-content-label">Класс</p>
+							<p class="form-content-data">{{ user.user.grade.number }}</p>
+						</div>
+						{% endif %}
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="widget-edit-student hide" id="{{ user.user.id }}">
+			<form method="POST" action="" autocomplete="off">
+				{form.edit_student}
+			</form>
+		</div>
+		{% endfor %}
+	</div>
+</main>
+{% endblock %}

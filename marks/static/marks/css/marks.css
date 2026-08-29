@@ -1,0 +1,153 @@
+.main-header {
+	display: flex;
+	flex-wrap: nowrap;
+	align-items: center;
+	background-color: transparent;
+	padding: 20px;/*10*/
+}
+
+.section-label {
+
+}
+
+.grade-label {
+	flex-grow: 1;
+	text-align: center;
+}
+
+.choose-period {
+	display: flex;
+	flex-wrap: nowrap;
+	align-items: center;
+	border: 1px solid black;
+	border-radius: 5px;
+}
+
+.content {
+	display: flex;
+	flex-wrap: nowrap;
+	flex-direction: column;
+	box-sizing: border-box;
+	padding: 10px;
+}
+
+.quarter {
+	display: flex;
+	flex-wrap: nowrap;
+	flex-direction: row;
+	/*background-color: purple;
+	border: 1px solid red;*/
+	background-color: var(--primary-50);
+	border: 1px solid var(--primary-200);
+	border-radius: 5px;
+	width: 100%;
+	margin-bottom: 10px;
+	box-shadow: 0 0px 4px 0 rgba(0,0,0,0.2);
+}
+
+.quarter.current {
+	background-color: var(--accent-50);
+	border: 1px solid var(--accent-200);
+}
+
+.base {
+	width: 18%;
+	/*background-color: lime;*/
+	background-color: var(--primary-200);
+	border-top-left-radius:3px;
+	border-bottom-left-radius: 3px;
+	padding: 5px;
+}
+
+.base.current {
+	background-color: var(--accent-200);
+}
+
+.base-container {
+	display: flex;
+	flex-wrap: nowrap;
+	flex-direction: column;
+	justify-content: space-between;
+	height: 100%;
+}
+
+.progess {
+	/*border: 1px solid var(--background-50);*/
+	border-radius: 5px;
+	background-color: var(--primary-50);
+}
+
+.progress.current {
+	background-color: var(--accent-50);
+}
+
+.bar {
+	border-radius: 5px;
+	background-color: var(--primary-300);
+}
+
+.bar.current {
+	background-color: var(--accent-300);
+}
+
+.bar p {
+	margin-top: 2px;
+	margin-bottom: 5px;
+	margin-left: 10px;
+}
+
+.subjects {
+	display: flex;
+	flex-wrap: nowrap;
+	flex-direction: row;
+	gap: 5px;
+	box-sizing: border-box;
+	padding: 5px;
+	width: 82%;
+	overflow-x: scroll;
+}
+
+.subject {
+	display: flex;
+	flex-wrap: nowrap;
+	flex-direction: column;
+	justify-content: space-between;
+	width: 120px;
+	height: 90px;
+	background-color: var(--primary-200);
+	padding: 5px;
+}
+
+.subject.current {
+	background-color: var(--accent-200);
+}
+
+.number-5 {
+	color: lime;
+}
+
+.number-4 {
+	color: green;
+}
+
+.number-3 {
+	color: orange;
+}
+
+.number-2 {
+	color: red
+}
+
+.number-1 {
+	color: crimson;
+}
+
+@media screen and (max-width: 640px) {
+	.base {
+		width: 24%;
+	}
+
+	.subjects {
+		width: 76%;
+	}
+}

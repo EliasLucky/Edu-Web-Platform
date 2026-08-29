@@ -1,0 +1,30 @@
+{% extends "../core/base.html" %}
+{% load static %}
+
+{% block head_imports %}
+<link rel='stylesheet' type='text/css' href="{% static 'account/css/welcome.css' %}">
+{% endblock %}
+
+{% block title %}Главная{% endblock %}
+
+{% block content %}
+<main>
+	<div class="main-header">
+		<div class="section-label">
+			<p>Главная</p>
+		</div>
+	</div>
+	<div class="content">
+		<div class="welcome">
+			<div class="welcome-container">
+				<div class="welcome-h1">
+					<p>Добро пожаловать!</p>
+				</div>
+				<div class="welcome-content">
+					<a class="welcome-button" href="#">Продолжить обучение</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</main>
+{% endblock %}

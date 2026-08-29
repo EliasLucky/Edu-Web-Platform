@@ -1,0 +1,102 @@
+{% extends "../core/base.html" %}
+{% load static %}
+
+{% block head_imports %}
+<link rel='stylesheet' type='text/css' href="{% static 'account/css/profile.css' %}">
+{% endblock %}
+
+{% block title %}Профиль{% endblock %}
+
+{% block account_first_name %}
+Фамилия Имя
+{% endblock %}
+
+{% block account_type %}
+Ученик
+{% endblock %}
+
+{% block content %}
+<main>
+	<div class="main-header">
+		<div class="section-label">
+			<p>Профиль</p>
+		</div>
+		<!--<div class="grade-label">
+			<p>{10} класс</p>
+		</div>
+		<div class="choose-period">
+			<button></button>
+			<p>{2024-2025}</p>
+			<button></button>
+		</div>-->
+	</div>
+	<div class="content">
+		{% if user_profile.user.banner_picture %}
+		<div class="profile" style="background-image: url({{ user.banner_picture.url }});">
+		{% else %}
+		<div class="profile">
+		{% endif %}
+			<div class="profile-information">
+				<div class="profile-picture-container">
+					<div class="profile-picture">
+						<img src="{{ user_profile.user.profile_picture.url }}">
+					</div>
+					<!--<input class="change-profile-picture-input" type="file" name="profile-picture" accept="image/*">
+					<label><img src="#"></label>
+					<button class="change-profile-picture"><img src="#"></button>-->
+				</div>
+				<div class="profile-fullname">
+					<p>{{ user_profile.user.first_name }} {{ user_profile.user.last_name }}</p>
+				</div>
+				<div class="profile-type">
+					{% if user_profile.user.role == "A" %}
+						<p>Администратор</p>
+					{% elif user_profile.user.role == "T" %}
+						<p>Учитель</p>
+					{% elif user_profile.user.role == "C" %}
+						<p>Куратор</p>
+					{% elif user_profile.user.role == "S" %}
+						<p>Студент</p>
+					{% endif %}
+				</div>
+				<div class="profile-about">
+					{% if user_profile.user.about != "" %}
+						<p>О себе:</p>
+						<p>{{ user_profile.user.about }}</p>
+					{% endif %}
+				</div>
+				<div class="profile-tags">
+					{% if user_profile.user.role == "S" %}
+						<div class="tag">
+							<p>{{ user_profile.grade.number }} класс</p>
+						</div>
+						<div class="tag">
+							<p>Группа {{ group_name }}</p>
+						</div>
+						{% if user_profile.grade.number == "10" or user_profile.grade.number == "10" %}
+						<div class="tag">
+							<p>{{ user_profile.grade.direction }}</p>
+						</div>
+						{% endif %}
+					{% endif %}
+				</div>
+			</div>
+			{% if user_profile.user.role == "S" %}
+				<div class="medals">
+					<div class="medal">
+						<div class="medal-container">
+							<img src="#">
+						</div>
+						<div class="medal-name">
+							{Медаль}
+						</div>
+					</div>
+				</div>
+			{% endif %}
+			<!--<div class="edit-banner">
+				<button class="edit-banner-button">Изменить обложку профиля</button>
+			</div>-->
+		</div>
+	</div>
+</main>
+{% endblock %}

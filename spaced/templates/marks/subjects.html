@@ -1,0 +1,47 @@
+{% extends "../core/base.html" %}
+{% load static %}
+
+{% block head_imports %}
+<link rel='stylesheet' type='text/css' href="{% static 'marks/css/subjects.css' %}">
+{% endblock %}
+
+{% block title %}Студент{% endblock %}
+
+{% block account_first_name %}
+Фамилия Имя
+{% endblock %}
+
+{% block account_type %}
+Ученик
+{% endblock %}
+
+{% block content %}
+<main>
+	<div class="main-header">
+		<div class="section-label">
+			<p>{Главная}</p>
+		</div>
+		<div class="grade-label">
+			<p>{10} класс</p>
+		</div>
+		<div class="choose-period">
+			<button></button>
+			<p>{2024-2025}</p>
+			<button></button>
+		</div>
+	</div>
+	<div class="content">
+		<div class="subject">
+			<a href="{}">
+				<div class="subject-container">
+					<p>{Алгебра}</p>
+					<p>Итоговая: {5}</p>
+					<div class="progess">
+						<div class="bar" style="height: 20px; width: {50}%">{50%}</div>
+					</div>
+				</div>
+			</a>
+		</div>
+	</div>
+</main>
+{% endblock %}

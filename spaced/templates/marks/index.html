@@ -1,0 +1,133 @@
+{% extends "../core/base.html" %}
+{% load static %}
+
+{% block head_imports %}
+<link rel='stylesheet' type='text/css' href="{% static 'marks/css/marks.css' %}">
+{% endblock %}
+
+{% block title %}Все предметы{% endblock %}
+
+{% block account_first_name %}
+Фамилия Имя
+{% endblock %}
+
+{% block account_type %}
+Ученик
+{% endblock %}
+
+{% block content %}
+<main>
+	<div class="main-header">
+		<div class="section-label">
+			<p>Все предметы</p>
+		</div>
+		<div class="grade-label">
+			<p>{{ student.grade.number }} класс</p>
+		</div>
+		<div class="choose-period">
+			<button></button>
+			<p>{2024-2025}</p>
+			<button></button>
+		</div>
+	</div>
+	<div class="content">
+		{% for quarter in quarters %}
+		{% if quarter.quarter.current %}
+		<div class="quarter current">
+			<div class="base current">
+		{% else %}
+		<div class="quarter">
+			<div class="base">
+		{% endif %}
+				<a href="{}">
+					<div class="base-container">
+						<p>{{ quarter_names|get_item:quarter.quarter.name }}</p>
+						<div class="progess">
+							<div class="bar" style="height: 20px; width: {{ quarter.progress }}%"><p>{{ quarter.progress }}%</p></div>
+						</div>
+					</div>
+				</a>
+			</div>
+			<div class="subjects">
+				{% for subject in quarter.subjects.all %}
+				<a href="{}">
+					{% if quarter.quarter.current %}
+					<div class="subject current">
+					{% else %}
+					<div class="subject">
+					{% endif %}
+						<p>{{ subject_names|get_item:subject.subject.name }}</p>
+						{% if subject.final_score %}
+						<p>Итоговая: {{ subject.final_score }}</p>
+						{% else %}
+						<p>Итоговая: ?</p>
+						{% endif %}
+					</div>
+				</a>
+				{% endfor %}
+			</div>
+		</div>
+		{% endfor %}
+		<!--<div class="quarter">
+			<div class="base">
+				<a href="{}">
+					<div class="base-container">
+						<p>2 четверть</p>
+						<div class="progess">
+							<div class="bar" style="height: 20px; width: {50}%">{50%}</div>
+						</div>
+					</div>
+				</a>
+			</div>
+			<div class="subjects">
+				<a href="{}">
+					<div class="subject">
+						<p>{Алгебра}</p>
+						<p>Итоговая: {5}</p>
+					</div>
+				</a>
+			</div>
+		</div>
+		<div class="quarter">
+			<div class="base">
+				<a href="{}">
+					<div class="base-container">
+						<p>3 четверть</p>
+						<div class="progess">
+							<div class="bar" style="height: 20px; width: {50}%">{50%}</div>
+						</div>
+					</div>
+				</a>
+			</div>
+			<div class="subjects">
+				<a href="{}">
+					<div class="subject">
+						<p>{Алгебра}</p>
+						<p>Итоговая: {5}</p>
+					</div>
+				</a>
+			</div>
+		</div>
+		<div class="quarter">
+			<div class="base">
+				<a href="{}">
+					<div class="base-container">
+						<p>4 четверть</p>
+						<div class="progess">
+							<div class="bar" style="height: 20px; width: {50}%">{50%}</div>
+						</div>
+					</div>
+				</a>
+			</div>
+			<div class="subjects">
+				<a href="{}">
+					<div class="subject">
+						<p>{Алгебра}</p>
+						<p>Итоговая: {5}</p>
+					</div>
+				</a>
+			</div>
+		</div>-->
+	</div>
+</main>
+{% endblock %}

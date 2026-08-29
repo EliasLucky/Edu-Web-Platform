@@ -1,0 +1,60 @@
+{% extends "../core/base.html" %}
+{% load static %}
+
+{% block head_imports %}
+<link rel='stylesheet' type='text/css' href="{% static 'control/css/subject.css' %}">
+{% endblock %}
+
+{% block title %}Конструктор уроков{% endblock %}
+
+{% block account_first_name %}
+Фамилия Имя
+{% endblock %}
+
+{% block account_type %}
+Конструктор уроков
+{% endblock %}
+
+{% block content %}
+<main>
+	<div class="main-header">
+		<div class="section-label">
+			<p>Конструктор уроков</p>
+		</div>
+		<div class="grade-label">
+			<p>- {{ subject_names|get_item:subject }}</p>
+		</div>
+		<!--<div class="choose-period">
+			<button></button>
+			<p>{2024-2025}</p>
+			<button></button>
+		</div>-->
+	</div>
+	<div class="content">
+		<div class="content-header">
+			<div class="content-header-left">
+				<a href="{{request.path}}">
+					<button class="back">Назад</button>
+				</a>
+			</div>
+		</div>
+		{% for grade in grades %}
+			<div class="grade">
+				{% if grade.number == 10 or grade.number == 11 %}
+				<a href="{{request.path}}?subject={{subject}}&grade={{grade.number}}&direction={{grade.direction}}">
+				{% else %}
+				<a href="{{request.path}}?subject={{subject}}&grade={{grade.number}}">
+				{% endif %}
+					<div class="grade-container">
+						{% if grade.direction %}
+							<p>{{ grade.number }} класс. {{ grade_directions|get_item:grade.direction }}</p>
+						{% else %}
+							<p>{{ grade.number }} класс</p>
+						{% endif %}
+					</div>
+				</a>
+			</div>
+		{% endfor %}
+	</div>
+</main>
+{% endblock %}

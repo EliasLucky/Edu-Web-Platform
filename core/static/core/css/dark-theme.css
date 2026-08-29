@@ -1,0 +1,168 @@
+/*:root[data-theme="dark"]*/
+:root {
+	--neutral-n100: rgb(16,18,20);
+	--neutral-0: rgb(22,26,29);
+	--neutral-100: rgb(29,33,37);
+	--neutral-200: rgb(34,39,43);
+	--neutral-250: rgb(40,46,51);
+	--neutral-300: rgb(44,51,58);
+	--neutral-350: rgb(56,65,74);
+	--neutral-400: rgb(69,79,89);
+	--neutral-500: rgb(89,103,115);
+	--neutral-600: rgb(115,132,150);
+	--neutral-700: rgb(140,155,171);
+	--neutral-800: rgb(159,173,188);
+	--neutral-900: rgb(182,194,207);
+	--neutral-1000: rgb(199,209,219);
+	--neutral-1100: rgb(222,228,234);
+
+	--text-50: rgb(11,14,15);
+	--text-100: rgb(22,28,29);
+	--text-200: rgb(44,55,58);
+	--text-300: rgb(66,83,87);
+	--text-400: rgb(88,111,116);
+	--text-500: rgb(110,138,145);
+	--text-600: rgb(139,162,167);
+	--text-700: rgb(168,185,189);
+	--text-800: rgb(197,208,211);
+	--text-900: rgb(226,232,233);
+	--text-950: rgb(240,243,244);
+
+	--background-50: rgb(10,14,16);
+	--background-100: rgb(20,27,31);
+	--background-200: rgb(39,55,63);
+	--background-300: rgb(59,82,94);
+	--background-400: rgb(79,110,125);
+	--background-500: rgb(98,137,157);
+	--background-600: rgb(130,161,176);
+	--background-700: rgb(161,184,196);
+	--background-800: rgb(192,208,216);
+	--background-900: rgb(224,231,235);
+	--background-950: rgb(239,243,245);
+
+	--primary-50: rgb(9,15,17);
+	--primary-100: rgb(17,30,34);
+	--primary-200: rgb(34,60,68);
+	--primary-300: rgb(51,90,102);
+	--primary-400: rgb(68,120,136);
+	--primary-500: rgb(85,150,170);
+	--primary-600: rgb(119,171,187);
+	--primary-700: rgb(153,192,204);
+	--primary-800: rgb(187,213,221);
+	--primary-900: rgb(221,234,238);
+	--primary-950: rgb(238,244,246);
+
+	--secondary-50: rgb(7, 16, 18);
+	--secondary-100: rgb(15, 31, 36);
+	--secondary-200: rgb(29, 63, 73);
+	--secondary-300: rgb(44, 94, 109);
+	--secondary-400: rgb(58, 125, 146);
+	--secondary-500: rgb(73, 157, 182);
+	--secondary-600: rgb(109, 176, 197);
+	--secondary-700: rgb(146, 196, 211);
+	--secondary-800: rgb(182, 216, 226);
+	--secondary-900: rgb(219, 235, 240);
+	--secondary-950: rgb(237, 245, 248);
+
+	--accent-50: rgb(6, 16, 20);
+	--accent-100: rgb(12, 33, 39);
+	--accent-200: rgb(24, 65, 78);
+	--accent-300: rgb(36, 98, 117);
+	--accent-400: rgb(48, 131, 156);
+	--accent-500: rgb(60, 164, 195);
+	--accent-600: rgb(99, 182, 207);
+	--accent-700: rgb(138, 200, 219);
+	--accent-800: rgb(177, 218, 231);
+	--accent-900: rgb(216, 237, 243);
+	--accent-950: rgb(235, 246, 249);
+
+	--background-color: rgb(10,14,16);
+	--foreground-color: rgb(18,22,23);
+	--foreground-color2: rgb(18,22,23);
+	--selected-color: rgb(24,39,43);
+	--main-color: rgb(91,179,205);
+	--main-shadowed-color: rgb(62,116,132);
+
+	--primary-color: rgb(166,200,210);
+	--secondary-color: rgb(50,108,125);
+	--accent-color: rgb(91,179,205);
+
+	--text-color: rgb(234,238,239);
+	--text-shadowed-color: rgb(137,141,142);
+}
+
+:root[data-theme="light"] {
+	--text-50: rgb(240,243,244);
+	--text-100: rgb(226,232,233);
+	--text-200: rgb(197,208,211);
+	--text-300: rgb(168,185,189);
+	--text-400: rgb(139,162,167);
+	--text-500: rgb(110,138,145);
+	--text-600: rgb(88,111,116);
+	--text-700: rgb(66,83,87);
+	--text-800: rgb(44,55,58);
+	--text-900: rgb(22,28,29);
+	--text-950: rgb(11,14,15);
+
+	--background-50: rgb(239,243,245);
+	--background-100: rgb(224,231,235);
+	--background-200: rgb(192,208,216);
+	--background-300: rgb(161,184,196);
+	--background-400: rgb(130,161,176);
+	--background-500: rgb(98,137,157);
+	--background-600: rgb(79,110,125);
+	--background-700: rgb(59,82,94);
+	--background-800: rgb(39,55,63);
+	--background-900: rgb(20,27,31);
+	--background-950: rgb(10,14,16);
+
+	--primary-50: rgb(238, 244, 246);
+	--primary-100: rgb(221, 234, 238);
+	--primary-200: rgb(187, 213, 221);
+	--primary-300: rgb(153, 192, 204);
+	--primary-400: rgb(119, 171, 187);
+	--primary-500: rgb(85, 150, 170);
+	--primary-600: rgb(68, 120, 136);
+	--primary-700: rgb(51, 90, 102);
+	--primary-800: rgb(34, 60, 68);
+	--primary-900: rgb(17, 30, 34);
+	--primary-950: rgb(9, 15, 17);
+
+	--secondary-50: rgb(237, 245, 248);
+	--secondary-100: rgb(219, 235, 240);
+	--secondary-200: rgb(182, 216, 226);
+	--secondary-300: rgb(146, 196, 211);
+	--secondary-400: rgb(109, 176, 197);
+	--secondary-500: rgb(73, 157, 182);
+	--secondary-600: rgb(58, 125, 146);
+	--secondary-700: rgb(44, 94, 109);
+	--secondary-800: rgb(29, 63, 73);
+	--secondary-900: rgb(15, 31, 36);
+	--secondary-950: rgb(7, 16, 18);
+
+	--accent-50: rgb(235, 246, 249);
+	--accent-100: rgb(216, 237, 243);
+	--accent-200: rgb(177, 218, 231);
+	--accent-300: rgb(138, 200, 219);
+	--accent-400: rgb(99, 182, 207);
+	--accent-500: rgb(60, 164, 195);
+	--accent-600: rgb(48, 131, 156);
+	--accent-700: rgb(36, 98, 117);
+	--accent-800: rgb(24, 65, 78);
+	--accent-900: rgb(12, 33, 39);
+	--accent-950: rgb(6, 16, 20);
+
+	--background-color: rgb(10,14,16);
+	--foreground-color: rgb(18,22,23);
+	--foreground-color2: rgb(18,22,23);
+	--selected-color: rgb(24,39,43);
+	--main-color: rgb(91,179,205);
+	--main-shadowed-color: rgb(62,116,132);
+
+	--primary-color: rgb(166,200,210);
+	--secondary-color: rgb(50,108,125);
+	--accent-color: rgb(91,179,205);
+
+	--text-color: rgb(234,238,239);
+	--text-shadowed-color: rgb(137,141,142);
+}

@@ -1,0 +1,65 @@
+{% extends "../core/base.html" %}
+{% load static %}
+
+{% block head_imports %}
+<link rel='stylesheet' type='text/css' href="{% static 'control/css/language.css' %}">
+{% endblock %}
+
+{% block title %}Конструктор уроков{% endblock %}
+
+{% block account_first_name %}
+Фамилия Имя
+{% endblock %}
+
+{% block account_type %}
+Конструктор уроков
+{% endblock %}
+
+{% block content %}
+<main>
+	<div class="main-header">
+		<div class="section-label">
+			<p>Конструктор уроков</p>
+		</div>
+		<div class="grade-label">
+			{% if grade.number == 10 or grade.number == 11 %}
+			<p>- {{ grade.number }} класс {{ grade_directions|get_item:grade.direction }} {{ subject_names|get_item:subject }} {{ languages|get_item:language }}</p>
+			{% else %}
+			<p>- {{ grade.number }} класс {{ subject_names|get_item:subject }} {{ languages|get_item:language }}</p>
+			{% endif %}
+		</div>
+		<!--<div class="choose-period">
+			<button></button>
+			<p>{2024-2025}</p>
+			<button></button>
+		</div>-->
+	</div>
+	<div class="content">
+		<div class="content-header">
+			<div class="content-header-left">
+				{% if grade.number == 10 or grade.number == 11 %}
+				<a href="{{request.path}}?subject={{subject}}&grade={{grade.number}}&direction={{grade.direction}}">
+				{% else %}
+				<a href="{{request.path}}?subject={{subject}}&grade={{grade.number}}">
+				{% endif %}
+					<button class="back">Назад</button>
+				</a>
+			</div>
+		</div>
+		{% for quarter in quarters %}
+			<div class="quarter">
+				{% if grade.number == 10 or grade.number == 11 %}
+				<a href="{{request.path}}?subject={{subject}}&grade={{grade.number}}&direction={{grade.direction}}&language={{language}}&quarter={{quarter.name}}">
+				{% else %}
+				<a href="{{request.path}}?subject={{subject}}&grade={{grade}}&language={{language}}&quarter={{quarter.name}}">
+				{% endif %}
+					<div class="quarter-container">
+						<h2>{{ quarter_names|get_item:quarter.name }}</h2>
+						<p>0 урока</p>
+					</div>
+				</a>
+			</div>
+		{% endfor %}
+	</div>
+</main>
+{% endblock %}

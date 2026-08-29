@@ -1,0 +1,65 @@
+.main-header {
+	display: flex;
+	flex-wrap: nowrap;
+	align-items: center;
+	background-color: transparent;
+	padding: 20px;
+}
+
+.section-label {
+
+}
+
+.content {
+	display: flex;
+	flex-wrap: nowrap;
+	flex-direction: column;
+	box-sizing: border-box;
+	padding: 10px;
+}
+
+.welcome {
+	display: flex;
+	flex-wrap: nowrap;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	background-color: var(--background-50);
+	border: 1px solid var(--background-200);
+	border-radius: 5px;
+	width: 100%;
+	position: relative;
+	box-shadow: 0 0px 8px 0px rgba(0,0,0,0.2);
+}
+
+.welcome-container {
+	display: flex;
+	flex-wrap: nowrap;
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
+	justify-content: start;
+	background-color: transparent;
+	width: fit-content;
+	margin-top: 10%;
+	margin-bottom: 10%;
+}
+
+.welcome-h1 {
+	font-size: 28px;
+	font-weight: bold;
+	margin-bottom: 20px;
+}
+
+.welcome-button {
+	cursor: pointer;
+	padding: 5px;
+	color: black;
+	background-color: white;
+	border-radius: 5px;
+}
+
+@media screen and (max-width: 820px) {
+	
+}

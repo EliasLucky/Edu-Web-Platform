@@ -1,0 +1,51 @@
+{% extends "../core/base.html" %}
+{% load static %}
+
+{% block head_imports %}
+<link rel='stylesheet' type='text/css' href="{% static 'control/css/index.css' %}">
+{% endblock %}
+
+{% block title %}Конструктор уроков{% endblock %}
+
+{% block account_first_name %}
+Фамилия Имя
+{% endblock %}
+
+{% block account_type %}
+Конструктор уроков
+{% endblock %}
+
+{% block content %}
+<main>
+	<div class="main-header">
+		<div class="section-label">
+			<p>Конструктор уроков</p>
+		</div>
+		<!--<div class="grade-label">
+			<p>{10} класс</p>
+		</div>
+		<div class="choose-period">
+			<button></button>
+			<p>{2024-2025}</p>
+			<button></button>
+		</div>-->
+	</div>
+	<div class="content">
+		{% for subject in subjects %}
+			<div class="subject">
+				<a href="{{request.path}}?subject={{subject.name}}">
+					<div class="subject-container">
+						<div class="base">
+							<img src="#">
+						</div>
+						<div class="info">
+							<h2>{{ subject_names|get_item:subject.name }}</h2>
+							<p>{{ subject.lessons.all.count }} урока</p>
+						</div>
+					</div>
+				</a>
+			</div>
+		{% endfor %}
+	</div>
+</main>
+{% endblock %}

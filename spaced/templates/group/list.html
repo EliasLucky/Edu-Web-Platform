@@ -1,0 +1,138 @@
+{% extends "../core/base.html" %}
+{% load static %}
+
+{% block head_imports %}
+<link rel='stylesheet' type='text/css' href="{% static 'group/css/list.css' %}">
+<script type="text/javascript" src="{% static 'group/js/group.js' %}"></script>
+{% endblock %}
+
+{% block title %}Группа{% endblock %}
+
+{% block account_first_name %}
+Фамилия Имя
+{% endblock %}
+
+{% block account_type %}
+Группа
+{% endblock %}
+
+{% block content %}
+<main>
+	<div class="main-header">
+		<div class="section-label">
+			<p>Группа</p>
+		</div>
+		<!--<div class="grade-label">
+			<p>{10} класс</p>
+		</div>-->
+		<!--<div class="choose-period">
+			<button></button>
+			<p>{2024-2025}</p>
+			<button></button>
+		</div>-->
+	</div>
+	<div class="content">
+		<div class="content-header">
+			<div class="content-header-left">
+				
+			</div>
+			<div class="content-header-right">
+				<button class="create-group" onclick="addGroup()">Добавить группу</button>
+			</div>
+		</div>
+		<table class="table">
+			<thead>
+				<tr>
+					<th>№</th>
+					<th>Язык обучения</th>
+					<th class="table-head-curator">Куратор</th>
+					<th>Количество учеников</th>
+					<th>Действия</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for group in groups %}
+					<tr>
+						<td data-label="№" class="table-number">1</td>
+						<td data-label="Язык обучения" class="table-language">
+							{% if group.language == "russian" %}
+								<div class="language russian">
+									<p>{{ languages|get_item:group.language }}</p>
+								</div>
+							{% elif group.language == "kazakh" %}
+								<div class="language kazakh">
+									<p>{{ languages|get_item:group.language }}</p>
+								</div>
+							{% endif %}
+						</td>
+						<td data-label="Куратор" class="table-curator">
+							<div class="curator-container">
+								<a href="{% url 'profile:view_profile' uuid=group.curator.user.id %}">
+									<div class="curator">
+										<div class="curator-account-profile-picture">
+											<img src="{{ group.curator.user.profile_picture.url }}">
+										</div>
+										<div class="curator-account-first-name">
+											<p>{{ group.curator.user.first_name }} {{ group.curator.user.last_name }}</p>
+										</div>
+									</div>
+								</a>
+							</div>
+						</td>
+						<td data-label="Количество учеников" class="table-students">
+							{{ group.students.all.count }}
+						</td>
+						<td data-label="Действия" class="table-actions">
+							<div class="actions">
+								<div class="view">
+									<a href="{% url 'group:edit' uuid=group.uuid %}">
+										<div class="view-container">
+											<img src="{% static 'core/icons/view.png' %}">
+										</div>
+									</a>
+								</div>
+								<div class="edit">
+									<a href="#">
+										<div class="view-container">
+											<img src="{% static 'core/icons/edit.png' %}">
+										</div>
+									</a>
+								</div>
+								<div class="delete">
+									<a href="#">
+										<div class="view-container">
+											<img src="{% static 'core/icons/delete.png' %}">
+										</div>
+									</a>
+								</div>
+							</div>
+						</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+		<div class="widget-add-group hide" id="widget-add-group">
+			<div class="widget-header">
+				<p>Создание группы</p>
+				<button type="button" onclick="addGroup()"><img src="#"></button>
+			</div>
+			<div class="widget-content">
+				<div class="note">
+					<p>Пункты помеченные символом *, обязательны для заполнения.</p>
+				</div>
+				<form method="POST" action="" autocomplete="off">
+					{% csrf_token %}
+					
+					<div class="form-content">
+						{{ form.add_group }}
+					</div>
+					<div class="buttons">
+						<button type="reset" class="cancel" onclick="addGroup()">Отмена</button>
+						<button type="submit" class="submit">Сохранить</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</main>
+{% endblock %}

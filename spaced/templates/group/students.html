@@ -1,0 +1,124 @@
+{% extends "../core/base.html" %}
+{% load static %}
+
+{% block head_imports %}
+<link rel='stylesheet' type='text/css' href="{% static 'group/css/students.css' %}">
+<script type="text/javascript" src="{% static 'group/js/student.js' %}"></script>
+{% endblock %}
+
+{% block title %}Группа{% endblock %}
+
+{% block account_first_name %}
+Фамилия Имя
+{% endblock %}
+
+{% block account_type %}
+Группа
+{% endblock %}
+
+{% block content %}
+<main>
+	<div class="main-header">
+		<div class="section-label">
+			<p>Группа</p>
+		</div>
+		<div class="grade-label">
+			<p>ученики группы "{{ group.name }}"</p>
+		</div>
+		<!--<div class="section-label">
+			<p>Спиок учеников группы "{{ group.name }}"</p>
+		</div>-->
+	</div>
+	<div class="content">
+		<div class="content-header">
+			<div class="content-header-left">
+				<button class="reset-all-passwords">Сбросить всем пароль</button>
+			</div>
+			<div class="content-header-right">
+				<button class="create-group" onclick="addStudent()">Добавить ученика</button>
+			</div>
+		</div>
+		<table class="table">
+			<thead>
+				<tr>
+					<th class="table-head-center">№</th>
+					<th class="table-head-left">Ученик</th>
+					<th class="table-head-left">Логин</th>
+					<th class="table-head-center">Пароль</th>
+					<th class="table-head-center">Действия</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for student in students %}
+					<tr>
+						<td data-label="№" class="table-number">1</td>
+						<td data-label="Ученик" class="table-student">
+							<div class="student-container">
+								<a href="{% url 'profile:view_profile' uuid=student.user.id %}">
+									<div class="student">
+										<div class="student-account-profile-picture">
+											<img src="{{ student.user.profile_picture.url }}">
+										</div>
+										<div class="student-account-first-name">
+											<p>{{ student.user.first_name }} {{ student.user.last_name }}</p>
+										</div>
+									</div>
+								</a>
+							</div>
+						</td>
+						<td data-label="Логин" class="table-gmail">
+							{{ student.user.login }}
+						</td>
+						<td data-label="Пароль" class="table-password">
+							{{ student.user.generated_password }}
+						</td>
+						<td data-label="Действия" class="table-actions">
+							<div class="actions">
+								<div class="view">
+									<img src="#">
+								</div>
+								<div class="edit">
+									<img src="#">
+								</div>
+								<div class="delete">
+									<img src="#">
+								</div>
+							</div>
+						</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+	<div class="widget-add-student hide" id="widget-add-student">
+		<div class="widget-header">
+			<p>Добавление ученика</p>
+			<button type="button" onclick="addStudent()"><img src="#"></button>
+		</div>
+		<div class="widget-content">
+			<div class="note">
+				<p>Пункты помеченные символом *, обязательны для заполнения.</p>
+			</div>
+			<form method="POST" action="" autocomplete="off">
+				{% csrf_token %}
+				
+				<div class="form-content">
+					{{ form.add_student }}
+				</div>
+				<div class="buttons">
+					<button type="reset" class="cancel" onclick="addStudent()">Отмена</button>
+					<button type="submit" class="submit">Сохранить</button>
+				</div>
+			</form>
+		</div>
+	</div>
+	<div class="widget-view-student">
+		
+	</div>
+	<div class="widget-edit-student">
+		<form method="POST" action="" autocomplete="off">
+			{form.edit_student}
+		</form>
+	</div>
+</main>
+{% endblock %}
